@@ -12,7 +12,9 @@
     <div class="boards">
       <div class="board" id="todo-Board">
         <input type="color" name="color" id="task-todo" class="clr-todo" value="#fa0000">
-        <h1 class="heading">ToDo</h1>
+      <h1 class="heading">ToDo</h1>
+      <div class="newTodos">
+      </div>    
       </div>
       <div class="board" id="inProgress-Board">
         <input type="color" name="color" id="task-Inprogress" class="clr-todo" value="#ffba03">
@@ -47,8 +49,8 @@
     // Dialog to show task details on double click
     <dialog id="taskDetail">
       <div class="taskInfo">
-        <h2 class="taskTitle"></h2>
-        <p class="taskdescription"></p>
+        <!-- <h2 class="taskTitle"></h2> -->
+        <!-- <p class="taskdescription"></p> -->
         <span id="status"></span>
       </div>
       <button class="close-btn">X</button>
