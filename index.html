@@ -1,18 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Advance Todo App</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
     <div class="boards">
-        <div class="board" id="todo-Board">ToDo</div>
-        <div class="board"  id="inProgress-Board">In Progress</div>
-        <div class="board"  id="completed-Board">Completed</div>
+      <div class="board" id="todo-Board">
+        <h1 class="heading">ToDo</h1>
+      </div>
+      <div class="board" id="inProgress-Board">
+        <h1 class="heading">In Progress</h1>
+      </div>
+      <div class="board" id="completed-Board">
+        <h1 class="heading">Completed</h1>
+      </div>
     </div>
-   <button class="createTodo">Create Todo</button>
-</body>
-<script src="index.js"></script>
+    <button class="createTodo">Create Todo</button>
+
+    // Dialog for taking input for task
+    <dialog id="todoForm">
+      <form method="dialog" id="taskForm">
+        <h2>Create New Task</h2>
+        <input type="text" name="text" id="text" placeholder="Task">
+         <textarea name="description" id="description" placeholder="Description"></textarea>
+        <span id="deadline">Deadline Date</span>
+        <input type="date" name="date" id="date">
+        <button type="submit" id="submit">Create Todo</button>
+      </form>
+    </dialog>
+
+    // Dialog to show task details on double click
+    <dialog id="taskDetail">
+
+    </dialog>
+  </body>
+  <script src="index.js"></script>
 </html>
