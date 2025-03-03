@@ -1,6 +1,8 @@
 const taskDetail = document.querySelector("#taskDetail")
 const allBoards = document.querySelectorAll(".board")
 const todoBoard = document.querySelector("#todo-Board")
+const inProgressBoard = document.querySelector("#inProgress-Board")
+const completedTaskBoard = document.querySelector("#completed-Board")
 const createButton = document.querySelector(".createTodo")
 const todoFormDialog = document.querySelector("#todoForm")
 const submitBtn = document.querySelector("#submit")
@@ -25,13 +27,20 @@ submitBtn.addEventListener("click", () => {
     const todoTitle = document.createElement("h3")
     const todoDescription = document.createElement("p")
 
+    const taskTitle = document.querySelector(".taskTitle")
+    const taskD = document.querySelector(".taskdescription")
+    taskTitle.innerText= inputTodo.toUpperCase()
+    taskD.innerText = Description
+
+
     todoTitle.classList.add("todo")
     todoDescription.classList.add("todo-Description")
     todoTitle.setAttribute("draggable", true)
-    todoTitle.innerText = inputTodo
-    todoDescription.innerText = Description
+    todoTitle.innerText = inputTodo.toUpperCase()
+
     attachDragEvent(todoTitle)
     todoBoard.appendChild(todoTitle)
+
     input.value = ""
     inputTodo = ""
 
@@ -47,11 +56,29 @@ function attachDragEvent(target) {
     })
 }
 
-    todoBoard.addEventListener("dblclick", () => {
-     taskDetail.showModal()
-       
+
+const taskStatus = document.querySelector("#status")
+allBoards.forEach((board)=>{
+    board.addEventListener("dblclick", () => {
+        taskDetail.showModal()
+        if(board === todoBoard){
+            taskStatus.style.color = "Red"
+            taskStatus.innerText = "Task is Pending"
+            
+        }
+       else if(board === inProgressBoard){
+            taskStatus.style.color = "yellow"
+            taskStatus.innerText = "Task is In Progress"
+            
+        }
+        else if(board === completedTaskBoard){
+            taskStatus.style.color = "Green"
+            taskStatus.innerText = `Task is Completed on `
+            
+        }
     })
-  
+    
+})
 
 
 
@@ -63,4 +90,12 @@ allBoards.forEach((board) => {
         const draggedTask = document.querySelector(".drag")
         board.append(draggedTask)
     })
+   
 })
+
+
+const closeBtn = document.querySelector(".close-btn")
+closeBtn.addEventListener('click',()=>{
+   taskDetail.close()
+})
+

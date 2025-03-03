@@ -4,17 +4,24 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Advance Todo App</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="board.css" />
+    <link rel="stylesheet" href="todoModal.css" />
+    <link rel="stylesheet" href="showTodo.css" />
   </head>
   <body>
     <div class="boards">
       <div class="board" id="todo-Board">
+        <input type="color" name="color" id="task-todo" class="clr-todo" value="#fa0000">
         <h1 class="heading">ToDo</h1>
       </div>
       <div class="board" id="inProgress-Board">
+        <input type="color" name="color" id="task-Inprogress" class="clr-todo" value="#ffba03">
+
         <h1 class="heading">In Progress</h1>
       </div>
       <div class="board" id="completed-Board">
+        <input type="color" name="color" id="task-completed" class="clr-todo" value="#008000">
+
         <h1 class="heading">Completed</h1>
       </div>
     </div>
@@ -23,18 +30,28 @@
     // Dialog for taking input for task
     <dialog id="todoForm">
       <form method="dialog" id="taskForm">
+        
         <h2>Create New Task</h2>
-        <input type="text" name="text" id="text" placeholder="Task">
-         <textarea name="description" id="description" placeholder="Description"></textarea>
+        <input type="text" name="text" id="text" placeholder="Task" />
+        <textarea
+          name="description"
+          id="description"
+          placeholder="Description"
+        ></textarea>
         <span id="deadline">Deadline Date</span>
-        <input type="date" name="date" id="date">
+        <input type="date" name="date" id="date" />
         <button type="submit" id="submit">Create Todo</button>
       </form>
     </dialog>
 
     // Dialog to show task details on double click
     <dialog id="taskDetail">
-
+      <div class="taskInfo">
+        <h2 class="taskTitle"></h2>
+        <p class="taskdescription"></p>
+        <span id="status"></span>
+      </div>
+      <button class="close-btn">X</button>
     </dialog>
   </body>
   <script src="index.js"></script>
