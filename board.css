@@ -38,6 +38,11 @@
   padding: 10px 20px;
   margin-top: 10px;
 }
+
+.deleteButton{
+color: white;
+width: 20px;
+}
 .heading {
   display: flex;
   justify-content: center;
