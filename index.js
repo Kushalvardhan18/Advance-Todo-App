@@ -14,6 +14,7 @@ createTodo.addEventListener("click", () => {
 
 
 let input = ""
+let deadline = ""
 taskInput.addEventListener('input', (e) => {
     input = e.target.value
 })
@@ -24,7 +25,7 @@ taskDescription.addEventListener('input', (e) => {
 })
 
 deadlineDate.addEventListener('input', (e) => {
-    console.log(e.target.value);
+    deadline = e.target.value
 
 })
 
@@ -43,9 +44,11 @@ submitTask.addEventListener('click', () => {
     newTaskTitle.classList.add('todo')
     newTaskTitle.innerText = input.toUpperCase()
     newTaskTitle.draggable = true
+    newTaskTitle.setAttribute("deadlineDate",deadline)
     newTodos.appendChild(newTaskTitle)
     todoBoard.appendChild(newTodos)
     attachDragEvents(newTaskTitle)
+
     // clearing the form inputs
     taskForm.reset()
     todoForm.close()
@@ -64,7 +67,15 @@ cancelCreation.addEventListener('click',()=>{
 })
 
 const allTodos = document.querySelectorAll(".todo")
-allTodos.forEach(attachDragEvents)
+// allTodos.forEach(attachDragEvents)
+allTodos.forEach((item)=>{
+    item.addEventListener('click',()=>{
+        const date = document.createElement('h4')
+        date.innerText = deadline
+        item.appendChild(date)
+        attachDragEvents(item)
+    })
+})
 
 const allBoards = document.querySelectorAll(".board")
 allBoards.forEach((board)=>{
