@@ -5,6 +5,7 @@ let taskInput = document.querySelector("#text")
 let taskDescription = document.querySelector('#description')
 let deadlineDate = document.querySelector("#date")
 const submitTask = document.querySelector("#submit")
+const cancelCreation = document.querySelector("#cancel")
 const newTodos = document.querySelector(".newTodos")
 const todoBoard = document.querySelector("#todo-Board")
 createTodo.addEventListener("click", () => {
@@ -48,7 +49,17 @@ submitTask.addEventListener('click', () => {
     // clearing the form inputs
     taskForm.reset()
     todoForm.close()
-    // taskInput.value=""
+    taskInput.value=""
+    input="" 
+})
+
+cancelCreation.addEventListener('click',()=>{
+    if(!taskInput){
+        todoForm.close()
+    }
+    taskForm.reset()
+    todoForm.close()
+    taskInput.value=""
     input="" 
 })
 
