@@ -67,15 +67,17 @@ cancelCreation.addEventListener('click',()=>{
 })
 
 const allTodos = document.querySelectorAll(".todo")
-// allTodos.forEach(attachDragEvents)
+allTodos.forEach(attachDragEvents)
+
 allTodos.forEach((item)=>{
     item.addEventListener('click',()=>{
         const date = document.createElement('h4')
         date.innerText = deadline
         item.appendChild(date)
-        attachDragEvents(item)
+        // attachDragEvents(item)
     })
 })
+
 
 const allBoards = document.querySelectorAll(".board")
 allBoards.forEach((board)=>{
