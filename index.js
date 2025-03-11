@@ -1,17 +1,24 @@
 const todoForm = document.querySelector("#todoForm")
+const boardInfo = document.querySelector("#boardInfo")
 const taskForm = document.querySelector("#taskForm")
 const createTodo = document.querySelector(".createTodo")
+const createBoard = document.querySelector(".createBoard")
 let taskInput = document.querySelector("#text")
+let boardName = document.querySelector("#boardName")
 let taskDescription = document.querySelector('#description')
 let deadlineDate = document.querySelector("#date")
 const submitTask = document.querySelector("#submit")
 const cancelCreation = document.querySelector("#cancel")
+const dismissNewBoardCreation = document.querySelector("#dismissNewBoardCreation")
 const newTodos = document.querySelector(".newTodos")
 const todoBoard = document.querySelector("#todo-Board")
 createTodo.addEventListener("click", () => {
     todoForm.showModal()
 })
 
+createBoard.addEventListener('click',()=>{
+boardInfo.showModal()
+})
 
 let input = ""
 let deadline = ""
@@ -27,6 +34,10 @@ taskDescription.addEventListener('input', (e) => {
 deadlineDate.addEventListener('input', (e) => {
     deadline = e.target.value
 
+})
+
+boardName.addEventListener('input',(e)=>{
+    console.log(e.target.value)
 })
 
 function attachDragEvents(target){
@@ -64,6 +75,10 @@ cancelCreation.addEventListener('click',()=>{
     todoForm.close()
     taskInput.value=""
     input="" 
+})
+
+dismissNewBoardCreation.addEventListener('click',()=>{
+    boardInfo.close()
 })
 
 const allTodos = document.querySelectorAll(".todo")

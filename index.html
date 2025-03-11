@@ -13,6 +13,7 @@
 
     <main>
         <button class="createTodo">Create Todo</button>
+        <button class="createBoard">Create Board</button>
         <div class="boards">
             <section class="board" id="todo-Board">
                 <div class="board-header">
@@ -66,9 +67,18 @@
             </form>
         </dialog>
 
+
+        <dialog id="boardInfo">
+            <form method="dialog" id="boardForm">
+                <button id="dismissNewBoardCreation">X</button>
+                <h2>Create New Board</h2>
+                <label for="text" >Name:</label>
+                    <input type="text" name="text" id="boardName" placeholder="Board Name" required />
+                    <button class="createNewBoard">Create Board</button>
+            </form>
+        </dialog>
         <dialog id="taskDetail">
             <div class="taskInfo">
-                <span id="status"></span>
             </div>
             <button class="close-btn">X</button>
         </dialog>
