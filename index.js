@@ -46,8 +46,6 @@ boardName.addEventListener('input', (e) => {
 let newBoardColor = ""
 colorBoard.addEventListener('change',(e)=>{
     newBoardColor=e.target.value
-console.log(newBoardColor);
-
 })
 
 function attachDragEvents(target) {
@@ -88,6 +86,7 @@ cancelCreation.addEventListener('click', () => {
 })
 
 createNewBoard.addEventListener('click', () => {
+    if(!newBoardName) return
     const newBoardDiv = document.createElement("div")
     newBoardDiv.classList.add("board")
     const heading = document.createElement("h2")
@@ -100,9 +99,23 @@ createNewBoard.addEventListener('click', () => {
     newBoardDiv.appendChild(heading)
     boards.appendChild(newBoardDiv)
 
+    boardName.value =""
+    newBoardName =""
+    colorBoard.value = ""
+    newBoardColor =""
+    boardInfo.close()
+    boardInfo.reset()
 })
 dismissNewBoardCreation.addEventListener('click', () => {
+    if (!boardName) {
+        boardInfo.close()
+    }
+    boardName.value =""
+    newBoardName =""
+    colorBoard.value = ""
+    newBoardColor =""
     boardInfo.close()
+    boardInfo.reset()
 })
 
 const allTodos = document.querySelectorAll(".todo")
