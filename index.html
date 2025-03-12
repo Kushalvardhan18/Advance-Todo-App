@@ -1,89 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Advance Todo App</title>
     <link rel="stylesheet" href="style.css" />
-</head>
-<body>
+  </head>
+  <body>
     <header>
-        <h1>Advanced Todo App</h1>
+      <h1>Advanced Todo App</h1>
     </header>
 
     <main>
-        <button class="createTodo">Create Todo</button>
-        <button class="createBoard">Create Board</button>
-        <div class="boards">
-            <section class="board" id="todo-Board">
-                <div class="board-header">
-                    <input type="color" name="color" id="task-todo" class="clr-todo" value="#fa0000">
-                    <h2 class="heading">ToDo</h2>
-                </div>
-                <div class="newTodos">
-                    </div>
-            </section>
+      <button class="createTodo">Create Todo</button>
+      <button class="createBoard">Create Board</button>
+      <div class="boards">
+        <section class="board" id="todo-Board">
+          <div class="board-header">
+            <input
+              type="color"
+              name="color"
+              id="task-todo"
+              class="clr-todo"
+              value="#fa0000"
+            />
+            <h2 class="heading">ToDo</h2>
+          </div>
+          <div class="newTodos"></div>
+        </section>
 
-            <section class="board" id="inProgress-Board">
-                <div class="board-header">
-                    <input type="color" name="color" id="task-Inprogress" class="clr-todo" value="#ffba03">
-                    <h2 class="heading">In Progress</h2>
-                </div>
-                <div class="newTodos">
-                     </div>
-            </section>
+        <section class="board" id="inProgress-Board">
+          <div class="board-header">
+            <input
+              type="color"
+              name="color"
+              id="task-Inprogress"
+              class="clr-todo"
+              value="#ffba03"
+            />
+            <h2 class="heading">In Progress</h2>
+          </div>
+          <div class="newTodos"></div>
+        </section>
 
-            <section class="board" id="completed-Board">
-                <div class="board-header">
-                    <input type="color" name="color" id="task-completed" class="clr-todo" value="#008000">
-                    <h2 class="heading">Completed</h2>
-                </div>
-                <div class="newTodos">
-                     </div>
-            </section>
-        </div>
+        <section class="board" id="completed-Board">
+          <div class="board-header">
+            <input
+              type="color"
+              name="color"
+              id="task-completed"
+              class="clr-todo"
+              value="#008000"
+            />
+            <h2 class="heading">Completed</h2>
+          </div>
+          <div class="newTodos"></div>
+        </section>
+      </div>
 
-   
+      <dialog id="todoForm">
+        <form method="dialog" id="taskForm">
+          <h2>Create New Task</h2>
+          <div class="form-group">
+            <label for="text">Task:</label>
+            <input
+              type="text"
+              name="text"
+              id="text"
+              placeholder="Task"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="description">Description:</label>
+            <textarea
+              name="description"
+              id="description"
+              placeholder="Description"
+            ></textarea>
+          </div>
+          <div class="form-group">
+            <label for="date">Deadline Date:</label>
+            <input type="date" name="date" id="date" />
+          </div>
+          <div class="form-actions">
+            <button type="button" id="submit">Create Todo</button>
+            <button type="button" class="close-modal" id="cancel">
+              Cancel
+            </button>
+          </div>
+        </form>
+      </dialog>
 
-        <dialog id="todoForm">
-            <form method="dialog" id="taskForm">
-                <h2>Create New Task</h2>
-                <div class="form-group">
-                    <label for="text" >Task:</label>
-                    <input type="text" name="text" id="text" placeholder="Task" required />
-                </div>
-                <div class="form-group">
-                    <label for="description">Description:</label>
-                    <textarea name="description" id="description" placeholder="Description"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="date">Deadline Date:</label>
-                    <input type="date" name="date" id="date" />
-                </div>
-                <div class="form-actions">
-                    <button type="button" id="submit">Create Todo</button>
-                    <button type="button" class="close-modal" id="cancel">Cancel</button>
-                </div>
-            </form>
-        </dialog>
+      <dialog id="boardInfo">
+        <form method="dialog" id="boardForm">
+          <button id="dismissNewBoardCreation">X</button>
+          <h2>Create New Board</h2>
+          <label for="text">Name:</label>
+          <input
+            type="text"
+            name="text"
+            id="boardName"
+            placeholder="Board Name"
+            required
+          />
+          <label for="text">Color:</label>
+          <input
+            type="color"
+            name="color"
+            id="newColor"
+            class="clr-todo"
+            placeholder="Board tasks Color"
+            required
+          />
 
-
-        <dialog id="boardInfo">
-            <form method="dialog" id="boardForm">
-                <button id="dismissNewBoardCreation">X</button>
-                <h2>Create New Board</h2>
-                <label for="text" >Name:</label>
-                    <input type="text" name="text" id="boardName" placeholder="Board Name" required />
-                    <button class="createNewBoard">Create Board</button>
-            </form>
-        </dialog>
-        <dialog id="taskDetail">
-            <div class="taskInfo">
-            </div>
-            <button class="close-btn">X</button>
-        </dialog>
+          <button id="createNewBoard">Create Board</button>
+        </form>
+      </dialog>
+      <dialog id="taskDetail">
+        <div class="taskInfo"></div>
+        <button class="close-btn">X</button>
+      </dialog>
     </main>
 
     <script src="index.js"></script>
-</body>
+  </body>
 </html>

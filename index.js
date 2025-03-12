@@ -1,13 +1,16 @@
+const boards = document.querySelector(".boards")
 const todoForm = document.querySelector("#todoForm")
 const boardInfo = document.querySelector("#boardInfo")
 const taskForm = document.querySelector("#taskForm")
 const createTodo = document.querySelector(".createTodo")
 const createBoard = document.querySelector(".createBoard")
+const colorBoard = document.querySelector("#newColor")
 let taskInput = document.querySelector("#text")
 let boardName = document.querySelector("#boardName")
 let taskDescription = document.querySelector('#description')
 let deadlineDate = document.querySelector("#date")
 const submitTask = document.querySelector("#submit")
+const createNewBoard = document.querySelector("#createNewBoard")
 const cancelCreation = document.querySelector("#cancel")
 const dismissNewBoardCreation = document.querySelector("#dismissNewBoardCreation")
 const newTodos = document.querySelector(".newTodos")
@@ -16,8 +19,8 @@ createTodo.addEventListener("click", () => {
     todoForm.showModal()
 })
 
-createBoard.addEventListener('click',()=>{
-boardInfo.showModal()
+createBoard.addEventListener('click', () => {
+    boardInfo.showModal()
 })
 
 let input = ""
@@ -35,16 +38,23 @@ deadlineDate.addEventListener('input', (e) => {
     deadline = e.target.value
 
 })
-
-boardName.addEventListener('input',(e)=>{
-    console.log(e.target.value)
+let newBoardName = ""
+boardName.addEventListener('input', (e) => {
+    newBoardName = e.target.value
 })
 
-function attachDragEvents(target){
-    target.addEventListener('dragstart',()=>{
+let newBoardColor = ""
+colorBoard.addEventListener('change',(e)=>{
+    newBoardColor=e.target.value
+console.log(newBoardColor);
+
+})
+
+function attachDragEvents(target) {
+    target.addEventListener('dragstart', () => {
         target.classList.add("draggable")
     })
-    target.addEventListener('dragend',()=>{
+    target.addEventListener('dragend', () => {
         target.classList.remove("draggable")
     })
 }
@@ -55,7 +65,7 @@ submitTask.addEventListener('click', () => {
     newTaskTitle.classList.add('todo')
     newTaskTitle.innerText = input.toUpperCase()
     newTaskTitle.draggable = true
-    newTaskTitle.setAttribute("deadlineDate",deadline)
+    newTaskTitle.setAttribute("deadlineDate", deadline)
     newTodos.appendChild(newTaskTitle)
     todoBoard.appendChild(newTodos)
     attachDragEvents(newTaskTitle)
@@ -63,29 +73,43 @@ submitTask.addEventListener('click', () => {
     // clearing the form inputs
     taskForm.reset()
     todoForm.close()
-    taskInput.value=""
-    input="" 
+    taskInput.value = ""
+    input = ""
 })
 
-cancelCreation.addEventListener('click',()=>{
-    if(!taskInput){
+cancelCreation.addEventListener('click', () => {
+    if (!taskInput) {
         todoForm.close()
     }
     taskForm.reset()
     todoForm.close()
-    taskInput.value=""
-    input="" 
+    taskInput.value = ""
+    input = ""
 })
 
-dismissNewBoardCreation.addEventListener('click',()=>{
+createNewBoard.addEventListener('click', () => {
+    const newBoardDiv = document.createElement("div")
+    newBoardDiv.classList.add("board")
+    const heading = document.createElement("h2")
+    const inputClr = document.createElement("input")
+    inputClr.classList.add("clr-todo")
+    inputClr.value = newBoardColor
+    inputClr.type = 'color'
+    heading.innerText = newBoardName
+    newBoardDiv.appendChild(inputClr)
+    newBoardDiv.appendChild(heading)
+    boards.appendChild(newBoardDiv)
+
+})
+dismissNewBoardCreation.addEventListener('click', () => {
     boardInfo.close()
 })
 
 const allTodos = document.querySelectorAll(".todo")
 allTodos.forEach(attachDragEvents)
 
-allTodos.forEach((item)=>{
-    item.addEventListener('click',()=>{
+allTodos.forEach((item) => {
+    item.addEventListener('click', () => {
         const date = document.createElement('h4')
         date.innerText = deadline
         item.appendChild(date)
@@ -95,12 +119,12 @@ allTodos.forEach((item)=>{
 
 
 const allBoards = document.querySelectorAll(".board")
-allBoards.forEach((board)=>{
-    board.addEventListener('dragover',(e)=>{
+allBoards.forEach((board) => {
+    board.addEventListener('dragover', (e) => {
         e.preventDefault()
-      const draggableElement = document.querySelector(".draggable")  
-      if (draggableElement) {
-        board.appendChild(draggableElement);
-    }
+        const draggableElement = document.querySelector(".draggable")
+        if (draggableElement) {
+            board.appendChild(draggableElement);
+        }
     })
 })
