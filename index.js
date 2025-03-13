@@ -62,6 +62,8 @@ submitTask.addEventListener('click', () => {
     const newTaskTitle = document.createElement("h3")
     newTaskTitle.classList.add('todo')
     newTaskTitle.innerText = input.toUpperCase()
+    const clrItem = document.querySelector("#task-todo")
+    newTaskTitle.style.color = clrItem.value
     newTaskTitle.draggable = true
     newTaskTitle.setAttribute("deadlineDate", deadline)
     newTodos.appendChild(newTaskTitle)
@@ -73,6 +75,7 @@ submitTask.addEventListener('click', () => {
     todoForm.close()
     taskInput.value = ""
     input = ""
+    
 })
 
 cancelCreation.addEventListener('click', () => {
@@ -98,13 +101,29 @@ createNewBoard.addEventListener('click', () => {
     newBoardDiv.appendChild(inputClr)
     newBoardDiv.appendChild(heading)
     boards.appendChild(newBoardDiv)
-
     boardName.value =""
     newBoardName =""
     colorBoard.value = ""
     newBoardColor =""
     boardInfo.close()
     boardInfo.reset()
+
+// attach dragover
+
+newBoardDiv.addEventListener('dragover',(e)=>{
+    e.preventDefault()
+    const draggableElement = document.querySelector(".draggable")
+    if(draggableElement){
+        const clrItem = newBoardDiv.querySelector(".clr-todo")
+        if(clrItem){
+            draggableElement.style.color = clrItem.value
+        }
+        newBoardDiv.appendChild(draggableElement)
+    }
+})
+attachDragEvents()
+
+
 })
 dismissNewBoardCreation.addEventListener('click', () => {
     if (!boardName) {
@@ -121,14 +140,13 @@ dismissNewBoardCreation.addEventListener('click', () => {
 const allTodos = document.querySelectorAll(".todo")
 allTodos.forEach(attachDragEvents)
 
-allTodos.forEach((item) => {
-    item.addEventListener('click', () => {
-        const date = document.createElement('h4')
-        date.innerText = deadline
-        item.appendChild(date)
-        // attachDragEvents(item)
-    })
-})
+// allTodos.forEach((item) => {
+//     item.addEventListener('click', () => {
+//         const date = document.createElement('h4')
+//         date.innerText = deadline
+//         item.appendChild(date)
+//     })
+// })
 
 
 const allBoards = document.querySelectorAll(".board")
@@ -137,7 +155,25 @@ allBoards.forEach((board) => {
         e.preventDefault()
         const draggableElement = document.querySelector(".draggable")
         if (draggableElement) {
+            const clrItem = board.querySelector(".clr-todo")
+            if(clrItem){
+                draggableElement.style.color = clrItem.value
+            }
             board.appendChild(draggableElement);
+        }
+    })
+})
+const clrTodoChange = document.querySelectorAll(".clr-todo");
+
+clrTodoChange.forEach((item)=>{
+    item.addEventListener('change',(e)=>{
+        const board = e.target.closest(".board")
+        
+        if(board){
+            const allTodos = board.querySelectorAll(".todo")
+            allTodos.forEach((todo)=>{
+                todo.style.color = e.target.value
+            })
         }
     })
 })
