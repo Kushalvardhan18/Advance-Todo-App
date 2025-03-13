@@ -44,8 +44,8 @@ boardName.addEventListener('input', (e) => {
 })
 
 let newBoardColor = ""
-colorBoard.addEventListener('change',(e)=>{
-    newBoardColor=e.target.value
+colorBoard.addEventListener('change', (e) => {
+    newBoardColor = e.target.value
 })
 
 function attachDragEvents(target) {
@@ -75,7 +75,7 @@ submitTask.addEventListener('click', () => {
     todoForm.close()
     taskInput.value = ""
     input = ""
-    
+
 })
 
 cancelCreation.addEventListener('click', () => {
@@ -89,7 +89,7 @@ cancelCreation.addEventListener('click', () => {
 })
 
 createNewBoard.addEventListener('click', () => {
-    if(!newBoardName) return
+    if (!newBoardName) return
     const newBoardDiv = document.createElement("div")
     newBoardDiv.classList.add("board")
     const heading = document.createElement("h2")
@@ -101,53 +101,56 @@ createNewBoard.addEventListener('click', () => {
     newBoardDiv.appendChild(inputClr)
     newBoardDiv.appendChild(heading)
     boards.appendChild(newBoardDiv)
-    boardName.value =""
-    newBoardName =""
+    
+    inputClr.addEventListener('change', (e) => {
+        const board = e.target.closest(".board")
+        
+        if (board) {
+            const allTodos = board.querySelectorAll(".todo")
+            allTodos.forEach((todo) => {
+                todo.style.color = e.target.value
+            })
+        }
+    })
+   
+
+    // attach dragover
+
+    newBoardDiv.addEventListener('dragover', (e) => {
+        e.preventDefault()
+        const draggableElement = document.querySelector(".draggable")
+        if (draggableElement) {
+            const clrItem = newBoardDiv.querySelector(".clr-todo")
+            if (clrItem) {
+                draggableElement.style.color = clrItem.value
+            }
+            newBoardDiv.appendChild(draggableElement)
+        }
+    })
+    
+    boardName.value = ""
+    newBoardName = ""
     colorBoard.value = ""
-    newBoardColor =""
+    newBoardColor = ""
     boardInfo.close()
     boardInfo.reset()
-
-// attach dragover
-
-newBoardDiv.addEventListener('dragover',(e)=>{
-    e.preventDefault()
-    const draggableElement = document.querySelector(".draggable")
-    if(draggableElement){
-        const clrItem = newBoardDiv.querySelector(".clr-todo")
-        if(clrItem){
-            draggableElement.style.color = clrItem.value
-        }
-        newBoardDiv.appendChild(draggableElement)
-    }
+    attachDragEvents()
 })
-attachDragEvents()
 
-
-})
 dismissNewBoardCreation.addEventListener('click', () => {
     if (!boardName) {
         boardInfo.close()
     }
-    boardName.value =""
-    newBoardName =""
+    boardName.value = ""
+    newBoardName = ""
     colorBoard.value = ""
-    newBoardColor =""
+    newBoardColor = ""
     boardInfo.close()
     boardInfo.reset()
 })
 
 const allTodos = document.querySelectorAll(".todo")
 allTodos.forEach(attachDragEvents)
-
-// allTodos.forEach((item) => {
-//     item.addEventListener('click', () => {
-//         const date = document.createElement('h4')
-//         date.innerText = deadline
-//         item.appendChild(date)
-//     })
-// })
-
 
 const allBoards = document.querySelectorAll(".board")
 allBoards.forEach((board) => {
@@ -156,22 +159,25 @@ allBoards.forEach((board) => {
         const draggableElement = document.querySelector(".draggable")
         if (draggableElement) {
             const clrItem = board.querySelector(".clr-todo")
-            if(clrItem){
+            if (clrItem) {
                 draggableElement.style.color = clrItem.value
             }
             board.appendChild(draggableElement);
         }
     })
 })
+
+
+
 const clrTodoChange = document.querySelectorAll(".clr-todo");
 
-clrTodoChange.forEach((item)=>{
-    item.addEventListener('change',(e)=>{
+clrTodoChange.forEach((item) => {
+    item.addEventListener('change', (e) => {
         const board = e.target.closest(".board")
-        
-        if(board){
+
+        if (board) {
             const allTodos = board.querySelectorAll(".todo")
-            allTodos.forEach((todo)=>{
+            allTodos.forEach((todo) => {
                 todo.style.color = e.target.value
             })
         }
