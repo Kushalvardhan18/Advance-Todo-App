@@ -137,6 +137,7 @@ createNewBoard.addEventListener('click', () => {
     inputClr.classList.add("clr-todo")
     inputClr.value = newBoardColor
     inputClr.type = 'color'
+    heading.classList.add("newBoardHead")
     heading.innerText = newBoardName
     newBoardDiv.append(deleteBoard)
     newBoardDiv.appendChild(inputClr)

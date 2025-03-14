@@ -294,3 +294,6 @@ header{
 .heading{
   color: #2c3e50
 }
+.newBoardHead{
+  padding-bottom: 20px;
+}
