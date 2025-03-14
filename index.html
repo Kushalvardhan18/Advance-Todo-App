@@ -85,26 +85,31 @@
       </dialog>
 
       <dialog id="boardInfo">
+        <button id="dismissNewBoardCreation">X</button>
         <form method="dialog" id="boardForm">
-          <button id="dismissNewBoardCreation">X</button>
-          <h2>Create New Board</h2>
-          <label for="text">Name:</label>
-          <input
-            type="text"
-            name="text"
-            id="boardName"
-            placeholder="Board Name"
-         
-          />
-          <label for="text">Color:</label>
-          <input
-            type="color"
-            name="color"
-            id="newColor"
-            class="clr-todo"
-            placeholder="Board tasks Color"
-            required
-          />
+          <h2 id="heading_Board">Create New Board</h2>
+          <div class="mainInputs">
+            <div class="input1">
+              <label for="text">Name:</label>
+              <input
+              type="text"
+              name="text"
+              id="boardName"
+              placeholder="Board Name"
+            />
+            </div>
+            
+            <div class="input2"><label for="text">Color:</label>
+              <input
+                type="color"
+                name="color"
+                id="newColor"
+                class="clr-todo"
+                placeholder="Board tasks Color"
+                required
+              /></div>
+           
+          </div>
 
           <button id="createNewBoard">Create Board</button>
         </form>
