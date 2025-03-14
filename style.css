@@ -1,6 +1,6 @@
 * {
   margin: 0;
-  bottom: 0;
+  padding: 0;
   box-sizing: border-box;
   font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
@@ -14,8 +14,9 @@ header{
 .boards{
     display: flex;
     margin-inline: 50px;
-    width: 90vw;
+    width: 93vw;
     justify-content: center;
+    align-items: center;
     gap: 10px;
 }
 .board{
@@ -26,6 +27,8 @@ header{
     height: 80vh;
     padding: 10px;
     align-items: center;
+    text-align: center;
+    position: relative;
 }
 
 .createTodo{
@@ -66,7 +69,7 @@ header{
   background-color: #e0e0e0;
 }
 
-/* Style for the delete button */
+
 .todo button {
   background: red;
   color: white;
@@ -81,7 +84,7 @@ header{
 }
 
 .accordionContent {
-  display: none; /* Initially hidden */
+  display: none; 
   padding: 10px;
   background-color: #eaf3ff;
   border-left: 4px solid #007bff;
@@ -91,7 +94,7 @@ header{
   transition: max-height 0.3s ease-in-out;
 }
 
-/* When accordion is active, show it */
+
 .accordionContent.active {
   display: block;
 }
@@ -266,4 +269,28 @@ header{
 #newColor:hover{
   cursor: pointer;
 
+}
+.deleteBoard{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: red;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 5px 10px;
+  width: auto; 
+  height: 30px; 
+  display: inline-block; 
+  text-align: center;
+}
+.deleteBoard:hover{
+  background: darkred;
+}
+.board-header{
+  margin-bottom: 20px;
+}
+.heading{
+  color: #2c3e50
 }

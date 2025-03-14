@@ -133,6 +133,7 @@ createNewBoard.addEventListener('click', () => {
     const inputClr = document.createElement("input")
     const deleteBoard = document.createElement("button")
     deleteBoard.innerText = "Delete"
+    deleteBoard.classList.add("deleteBoard")
     inputClr.classList.add("clr-todo")
     inputClr.value = newBoardColor
     inputClr.type = 'color'
