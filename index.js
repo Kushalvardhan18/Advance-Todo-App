@@ -12,7 +12,6 @@ const submitTask = document.querySelector("#submit")
 const createNewBoard = document.querySelector("#createNewBoard")
 const cancelCreation = document.querySelector("#cancel")
 const dismissNewBoardCreation = document.querySelector("#dismissNewBoardCreation")
-const newTodos = document.querySelector(".newTodos")
 const todoBoard = document.querySelector("#todo-Board")
 createTodo.addEventListener("click", () => {
     todoForm.showModal()
@@ -58,36 +57,39 @@ submitTask.addEventListener('click', () => {
         alert("Task title cannot be empty")
         return
     }
-
-    const newTaskTitle = document.createElement("h3")
-    newTaskTitle.classList.add('todo')
-    newTaskTitle.innerText = input.toUpperCase()
-
+    const todoContainer = document.createElement("div")
+    const mainContainer = document.createElement("div")
+    const newTaskTitle = document.createElement("p")
     const clrItem = document.querySelector("#task-todo")
     const dateDeadline = document.createElement("span")
     const deleteTask = document.createElement("button")
     const accordionDiv = document.createElement("div")
+
+    todoContainer.classList.add('todo')
+    mainContainer.classList.add('mainContainer')
+    newTaskTitle.innerText = input.toUpperCase()
+
     deleteTask.innerText = "X"
-    dateDeadline.innerText = `Deadline: ${deadlineDate.value}`
-    newTaskTitle.style.color = clrItem.value
-    newTaskTitle.draggable = true
+    dateDeadline.innerText = `Deadline: ${deadlineDate.value || "not Defined" }`
+    todoContainer.style.color = clrItem.value
+    todoContainer.draggable = true
     accordionDiv.classList.add("accordionContent")
-     accordionDiv.style.display = "none"
+    accordionDiv.style.display = "none"
 
     deleteTask.addEventListener("click", () => {
-        deleteTaskFn(newTaskTitle)
+        deleteTaskFn(todoContainer)
     })
-    newTaskTitle.addEventListener("click", () => {
-        showAccordionFn(dateDeadline, accordionDiv)
+    todoContainer.addEventListener("click", () => {
+        showAccordionFn(accordionDiv)
     })
+    mainContainer.append(newTaskTitle)
+    mainContainer.appendChild(deleteTask)
+    todoContainer.append(mainContainer)
+    todoContainer.appendChild(accordionDiv)
+    accordionDiv.appendChild(dateDeadline)
+    todoBoard.appendChild(todoContainer)
 
-    newTodos.appendChild(newTaskTitle)
-    newTaskTitle.appendChild(accordionDiv)  
-    accordionDiv.appendChild(dateDeadline) 
-    newTaskTitle.appendChild(deleteTask)
-    todoBoard.appendChild(newTodos)
-
-    attachDragEvents(newTaskTitle)
+    attachDragEvents(todoContainer)
 
     // clearing the form inputs
     taskForm.reset()
@@ -99,9 +101,9 @@ submitTask.addEventListener('click', () => {
 
 })
 
-function showAccordionFn(deadline, accordion) {
+function showAccordionFn(accordion) {
     if (accordion.style.display === "none") {
-        accordion.style.display = "block"  
+        accordion.style.display = "block"
     } else {
         accordion.style.display = "none"
     }
@@ -121,7 +123,10 @@ cancelCreation.addEventListener('click', () => {
 })
 
 createNewBoard.addEventListener('click', () => {
-    if (!newBoardName) return
+    if (!newBoardName) {
+        alert("Board Name cannot be empty")
+        return
+    }
     const newBoardDiv = document.createElement("div")
     newBoardDiv.classList.add("board")
     const heading = document.createElement("h2")
@@ -136,9 +141,9 @@ createNewBoard.addEventListener('click', () => {
     newBoardDiv.appendChild(inputClr)
     newBoardDiv.appendChild(heading)
     boards.appendChild(newBoardDiv)
-    deleteBoard.addEventListener("click",()=>{
+    deleteBoard.addEventListener("click", () => {
         deleteBoardFn(newBoardDiv)
-})
+    })
     inputClr.addEventListener('change', (e) => {
         const board = e.target.closest(".board")
 
@@ -174,7 +179,7 @@ createNewBoard.addEventListener('click', () => {
     // boardInfo.reset()
 })
 
-function deleteBoardFn(newBoardDiv){
+function deleteBoardFn(newBoardDiv) {
     newBoardDiv.remove()
 }
 dismissNewBoardCreation.addEventListener('click', () => {

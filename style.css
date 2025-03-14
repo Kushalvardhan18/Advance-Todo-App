@@ -44,17 +44,22 @@ header{
     
 }
 .todo {
+  display: flex;
+  flex-direction: column;
   cursor: pointer;
   padding: 10px;
   background-color: #f4f4f4;
   border: 1px solid #ddd;
   border-radius: 5px;
   margin-bottom: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   font-size: 18px;
   transition: background 0.3s ease;
+}
+.mainContainer{
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  justify-content: space-between;
 }
 
 .todo:hover {
