@@ -54,7 +54,10 @@ function attachDragEvents(target) {
 }
 
 submitTask.addEventListener('click', () => {
-    if (!taskInput.value.trim()) return
+    if (!taskInput.value.trim()) {
+        alert("Task title cannot be empty")
+        return
+    }
 
     const newTaskTitle = document.createElement("h3")
     newTaskTitle.classList.add('todo')
@@ -65,7 +68,7 @@ submitTask.addEventListener('click', () => {
     const deleteTask = document.createElement("button")
     const accordionDiv = document.createElement("div")
     deleteTask.innerText = "X"
-    dateDeadline.innerText = deadlineDate.value
+    dateDeadline.innerText = `Deadline: ${deadlineDate.value}`
     newTaskTitle.style.color = clrItem.value
     newTaskTitle.draggable = true
     accordionDiv.classList.add("accordionContent")
@@ -85,8 +88,6 @@ submitTask.addEventListener('click', () => {
     todoBoard.appendChild(newTodos)
 
     attachDragEvents(newTaskTitle)
-
-
 
     // clearing the form inputs
     taskForm.reset()
@@ -125,14 +126,19 @@ createNewBoard.addEventListener('click', () => {
     newBoardDiv.classList.add("board")
     const heading = document.createElement("h2")
     const inputClr = document.createElement("input")
+    const deleteBoard = document.createElement("button")
+    deleteBoard.innerText = "Delete"
     inputClr.classList.add("clr-todo")
     inputClr.value = newBoardColor
     inputClr.type = 'color'
     heading.innerText = newBoardName
+    newBoardDiv.append(deleteBoard)
     newBoardDiv.appendChild(inputClr)
     newBoardDiv.appendChild(heading)
     boards.appendChild(newBoardDiv)
-
+    deleteBoard.addEventListener("click",()=>{
+        deleteBoardFn(newBoardDiv)
+})
     inputClr.addEventListener('change', (e) => {
         const board = e.target.closest(".board")
 
@@ -168,6 +174,9 @@ createNewBoard.addEventListener('click', () => {
     // boardInfo.reset()
 })
 
+function deleteBoardFn(newBoardDiv){
+    newBoardDiv.remove()
+}
 dismissNewBoardCreation.addEventListener('click', () => {
     if (!boardName) {
         boardInfo.close()
