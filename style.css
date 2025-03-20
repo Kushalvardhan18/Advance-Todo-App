@@ -57,6 +57,7 @@ header{
   margin-bottom: 10px;
   font-size: 18px;
   transition: background 0.3s ease;
+  width: 80%;
 }
 .mainContainer{
   display: flex;
